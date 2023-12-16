@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "author": "Nishimura Naoyuki",
   "main": "electron/main.js",
+  "description": "your app description",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -50,7 +52,7 @@
     "wait-on": "^7.2.0"
   },
   "build": {
-    "appId": "ssd-extractor.app",
+    "appId": "yourapp.app",
     "extends": null,
     "files": [
       "package.json",
