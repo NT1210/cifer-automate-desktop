@@ -24,7 +24,7 @@ const createWindow = () => {
     )
 
     mainWindow.setMenuBarVisibility(false)
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 
     mainWindow.once('ready-to-show', () => {
         mainWindow.show()

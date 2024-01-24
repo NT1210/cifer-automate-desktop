@@ -1,10 +1,9 @@
 const mongoose = require("mongoose")
-// const { green } = require('console-log-colors')
 require("dotenv").config()
 
 
 async function connect(){
-    const url = `mongodb://127.0.0.1:27017/${process.env.DB_NAME}?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.1`
+    const url = `mongodb://127.0.0.1:27017/ciferAutomate?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.1`
     
     try{
         await mongoose.connect(url)
