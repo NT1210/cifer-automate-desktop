@@ -232,6 +232,104 @@ input:focus {
   outline: 1px solid rgb(207, 22, 139);
 }
 
+.column-container {
+  display: flex;
+  flex-direction: row;
+  height: 94vh;
+}
+
+.russia-column {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 2px rgb(173, 165, 165);
+  width: 100%;
+  margin: 0.5rem 0.5rem;
+  border: 1px solid rgb(199, 191, 191);
+  border-radius: 20px;
+}
+
+.korea-column {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 2px rgb(173, 165, 165);
+  width: 100%;
+  margin: 0.5rem 0.5rem;
+  border: 1px solid rgb(199, 191, 191);
+  border-radius: 20px;
+}
+
+.column-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(75, 12, 158);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 1rem 0;
+}
+
+.russia-column .fi {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
+}
+
+.korea-column .fi {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
+}
+
+.column-title h3 {
+  color: white;
+  margin-left: 0.5rem;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  margin-top: 2rem;
+}
+
+.main-content p {
+  font-size: 1.5rem;
+  margin: 1rem 0 0 0;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.expired-red {
+  color: red;
+}
+
+.button-section {
+  padding: 0 2rem;
+  margin-top: auto;
+  margin-bottom: 5rem
+}
+
+.button-section button {
+  width: 100%;
+  background-color: rgb(10, 52, 129);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 8px;
+  cursor: pointer;
+  box-shadow: 0.2rem 0.3rem 0.2rem rgb(133, 130, 130);
+}
+
+.button-section button:active {
+  transform: translateX(0.2rem) translateY(0.3rem);
+  box-shadow: none;
+}
+
+.button-section button:disabled {
+  pointer-events: none;
+}
+
 /* @media only screen and (max-width: 900px){
   #home-button {
     width: 70%;
