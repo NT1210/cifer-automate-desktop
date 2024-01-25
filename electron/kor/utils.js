@@ -105,10 +105,17 @@ function getDate(){
     return `${year}-${month}-${date}`
 }
 
+function getDesktop() {
+    const dir_home = process.env[process.platform === "win32" ? "USERPROFILE" : "HOME"]
+    const dir_desktop = require("path").join(dir_home, "Desktop")
+
+    return dir_desktop
+}
 
 
 module.exports = {
     coordinateObj,
     validateDocument,
-    getDate
+    getDate,
+    getDesktop
 }

@@ -1,3 +1,4 @@
+const { dir } = require("console")
 const { Cifer } = require("../db/schema")
 
 function coordinateObj(arr){
@@ -25,11 +26,8 @@ function coordinateObj(arr){
         console.error(err)
     }
 
-    
-
     return ArrToBeReturned
 }
-
 
 async function validateDocument(obj){
     let objToBeAdded = [] //array
@@ -91,7 +89,6 @@ async function validateDocument(obj){
         }
     }
 
-    
     return [objToBeAdded, objToBeUpdated, objDeleted]
 }
 
@@ -105,10 +102,18 @@ function getDate(){
     return `${year}-${month}-${date}`
 }
 
+function getDesktop() {
+    const dir_home = process.env[process.platform === "win32" ? "USERPROFILE" : "HOME"]
+    const dir_desktop = require("path").join(dir_home, "Desktop")
+
+    return dir_desktop
+}
+
 
 
 module.exports = {
     coordinateObj,
     validateDocument,
-    getDate
+    getDate,
+    getDesktop
 }
