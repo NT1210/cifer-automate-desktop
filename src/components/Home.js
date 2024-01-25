@@ -95,53 +95,86 @@ const Home = () => {
       setExtractKorLoading(false)
     }
   }
+
+  const checkRussiaData = () => {
+    const total = context.data.filter(ele => {
+      return ele._doc.country === "俄罗斯"
+    })
+
+    const notExpired = total.filter(ele => {
+      return ele._doc.status === "有效"
+    })
+
+    const expired = total.filter(ele => {
+      return ele._doc.status === "注销" || ele._doc.status === "超期" || ele._doc.status === "暂停进口"
+    })
+
+    return [total, notExpired, expired]
+  }
+
+  const checkKoreaData = () => {
+    const total = context.data.filter(ele => {
+      return ele._doc.country === "韩国"
+    })
+
+    const notExpired = total.filter(ele => {
+      return ele._doc.status === "有效"
+    })
+
+    const expired = total.filter(ele => {
+      return ele._doc.status === "注销" || ele._doc.status === "超期" || ele._doc.status === "暂停进口"
+    })
+
+    return [total, notExpired, expired]
+  }
   
   return (
     <>
        {
-        context.connected ? (
+        context.connected ? (      
           <>
-            <button onClick={extract} type='button' disabled={extractLoading || extractKorLoading}>{extractLoading ? "extracting..." : "extract"}</button>
-            <button onClick={extractKor} type='button' disabled={extractLoading || extractKorLoading}>{extractKorLoading ? "extracting..." : "extractKor"}</button>
-          </>
-
-          // context.data.length > 0 ? (
-          //   <>
-          //   <div className='home-data'>       
+            <div className='home-data'>       
             
-          //     <table>
-          //         <tr>
-          //           <th>NO.</th><th>COUNTRY</th><th>CATEGORY</th><th>CHINA REG. NO.</th>
-          //           <th>OVERSEAS REG. NO.</th><th>NAME</th><th>ADDRESS</th>
-          //           <th>REG.DATE</th><th>REG.EXPIRY</th><th>STATE</th>
-          //         </tr>
-                
-          //         {
-          //           context.data.map(ele => {
-          //             return (
-          //               <>
-          //                 <tr>
-          //                   <td>{ele._doc.orderNum}</td><td>{ele._doc.country}</td><td>{ele._doc.category}</td>
-          //                   <td>{ele._doc.chinaRegNo}</td><td>{ele._doc.overseasRegNo}</td><td>{ele._doc.name}</td>
-          //                   <td>{ele._doc.address}</td><td>{ele._doc.regDate}</td><td>{ele._doc.regExpiryDate}</td><td>{ele._doc.status}</td>
-          //                 </tr>
-          //               </>
-          //             )
-          //           })
-          //         }
-          //     </table>
-          //   </div> 
-          // </>
-          // ) : (
-          //   <>
-          //     <div className='home-container'>
-          //     <div id='notConnected'>
-          //           <p>DB上にデータが存在していません.</p>
-          //           <p>左側ナビゲーションボタンから対象の国を選択のうえ抽出を開始してください.</p>
-          //       </div>
-          //     </div>
-          //   </>
-          // )
+
+
+
+              <div className='column-container'>
+                  <div className='russia-column'>
+                      <div className='column-title'>
+                      <span className="fi fi-ru"></span>
+                      <h3>RUSSIA</h3>
+                      </div>
+                      
+                      <div className='main-content'>
+                        <p>TOTAL REGISTERED: {checkRussiaData()[0].length}件</p>
+                        <p>VALID: {checkRussiaData()[1].length}件</p>
+                        <span className='expired-red'><p>EXPIRED: {checkRussiaData()[2].length}件</p></span>
+                      </div>
+
+                      <div className='button-section'>
+                        <button onClick={extract} type='button' disabled={extractLoading || extractKorLoading}>{extractLoading ? "抽出中..." : "抽出開始"}</button>
+                      </div>
+                  </div>
+
+                  <div className='korea-column'>
+                      <div className='column-title'>
+                      <span className="fi fi-kr"></span>
+                      <h3>KOREA</h3>
+                      </div>
+
+                      <div className='main-content'>
+                        <p>TOTAL REGISTERED: {checkKoreaData()[0].length}件</p>
+                        <p>VALID: {checkKoreaData()[1].length}件</p>
+                        <span className='expired-red'><p>EXPIRED: {checkKoreaData()[2].length}件</p></span>
+                      </div>
+
+                      <div className='button-section'>
+                        <button onClick={extractKor} type='button' disabled={extractLoading || extractKorLoading}>{extractKorLoading ? "抽出中..." : "抽出開始"}</button>
+                      </div>
+                  </div>
+              </div>
+            </div> 
+          </>
         ) : (
           <>
             <div className='home-container'>
