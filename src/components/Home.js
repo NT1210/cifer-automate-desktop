@@ -22,7 +22,7 @@ const Home = () => {
     try{
       let res = await window.myAPI.connectDB()
       if(res === "connected") {
-        toast.success("DBに接続しました。", {
+        toast.success("DBに接続しました。更新ファイルはデスクトップに保存されました。", {
           position: "bottom-right"
         });
         context.setConnected(true)
