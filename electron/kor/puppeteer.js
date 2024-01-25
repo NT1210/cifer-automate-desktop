@@ -50,18 +50,14 @@ async function extract(){
     for(let i=0; i<lastPageNum; i++){
         const dataPerPage = await page.evaluate(() => {
 
-            let tableBody = document.querySelectorAll("tbody td")
+            let tableBody = document.querySelectorAll(".fixed-table-container tbody td")
             let temparr = []
             tableBody.forEach(ele => temparr.push(ele.textContent))
-            temparr.shift()
-            temparr.shift() //なぜ韓国の場合は2回やる必要がある...?
             let slicedArr = window.sliceByNumber(temparr, 10)
             
-
             return slicedArr
         })
 
-        // console.log(dataPerPage)
         extractedArr.push(dataPerPage)
     
         delay(1500)
