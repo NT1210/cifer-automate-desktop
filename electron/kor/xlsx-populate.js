@@ -1,11 +1,12 @@
 const XlsxPopulate = require('xlsx-populate');
 const path = require("path")
-const { getDate } = require("./utils")
+const { getDate, getDesktop } = require("./utils")
 
 async function writeToFile(extractedData, objToBeUpdated, objToBeAdded, objDeleted) {
     const fullDate = getDate()
+    const desktopPlace = getDesktop()
     const templatePath = path.join(__dirname, "../", "template", "template.xlsx")
-    const outputPath = path.join(__dirname, "../", `${fullDate} 中国番号(韓国).xlsx`)
+    const outputPath = path.join(desktopPlace, `${fullDate} 中国番号(韓国).xlsx`)
 
     XlsxPopulate.fromFileAsync(templatePath)
         .then(workbook => {
