@@ -134,10 +134,6 @@ const Home = () => {
         context.connected ? (      
           <>
             <div className='home-data'>       
-            
-
-
-
               <div className='column-container'>
                   <div className='russia-column'>
                       <div className='column-title'>
