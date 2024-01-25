@@ -28,7 +28,9 @@ const CiferKor = () => {
       let res = await window.myAPI.connectDB()
       if(res === "connected") {
         toast.success("DBに接続しました。", {
-          position: "bottom-right"
+          position: "bottom-right",
+          theme: "dark",
+          autoClose: 3000
         });
         context.setConnected(true)
       }
@@ -37,7 +39,9 @@ const CiferKor = () => {
 
     }catch(e){
       toast.error("DBに接続できませんでした。DBが正常に起動しているか確認してください。", {
-        position: "bottom-right"
+        position: "bottom-right",
+        theme: "dark",
+        autoClose: 3000
       });
     }finally {
       setLoading(false)

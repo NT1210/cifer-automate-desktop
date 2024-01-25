@@ -25,7 +25,9 @@ const Home = () => {
       let res = await window.myAPI.connectDB()
       if(res === "connected") {
         toast.success("DBに接続しました。", {
-          position: "bottom-right"
+          position: "bottom-right",
+          theme: "dark",
+          autoClose: 3000
         });
         context.setConnected(true)
       }
@@ -34,7 +36,9 @@ const Home = () => {
 
     }catch(e){
       toast.error("DBに接続できませんでした。DBが正常に起動しているか確認してください。", {
-        position: "bottom-right"
+        position: "bottom-right",
+        theme: "dark",
+        autoClose: 3000
       });
     }finally {
       setLoading(false)
@@ -50,12 +54,16 @@ const Home = () => {
 
       if(res === "success"){
         toast.success("抽出が完了しました。更新ファイルはデスクトップに保存されました。", {
-          position: "bottom-right"
+          position: "bottom-right",
+          theme: "dark",
+          autoClose: 3000
       });
       }
     }catch(e){
       toast.error("エラーが発生しました。", {
-        position: "bottom-right"
+        position: "bottom-right",
+        theme: "dark",
+        autoClose: 3000
       });
     }finally{
       setExtractLoading(false)
@@ -72,12 +80,16 @@ const Home = () => {
 
       if(res === "success"){
         toast.success("抽出が完了しました。更新ファイルはデスクトップに保存されました。", {
-          position: "bottom-right"
+          position: "bottom-right",
+          theme: "dark",
+          autoClose: 3000
       });
       }
     }catch(e){
       toast.error("エラーが発生しました。", {
-        position: "bottom-right"
+        position: "bottom-right",
+        theme: "dark",
+        autoClose: 3000
       });
     }finally{
       setExtractKorLoading(false)
