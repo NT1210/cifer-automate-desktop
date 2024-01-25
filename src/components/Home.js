@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css'
 const Home = () => {
   const context = useContext(DBContext)
   const [loading, setLoading] = useState(false)
+  const [extractLoading, setExtractLoading] = useState(false)
+  const [extractKorLoading, setExtractKorLoading] = useState(false)
 
   const loadData = async () => {
     try{
@@ -39,41 +41,46 @@ const Home = () => {
     }
   }
 
-  // const showExpired = () => {
-  //   const selected = context.data.filter(ele => {
-  //     return ele._doc.status === "注销"
-  //   })
-
-  //   return selected
-  // }
-
   const extract = async () => {
-    setLoading(true)
-    const res = await window.myAPI.extract()
+    setExtractLoading(true)
+    
+    try{
+      const res = await window.myAPI.extract()
+      await loadData()
 
-    if(res === "success"){
-      toast.success("抽出が完了しました。更新ファイルはデスクトップに保存されました。", {
-        position: "bottom-right"
+      if(res === "success"){
+        toast.success("抽出が完了しました。更新ファイルはデスクトップに保存されました。", {
+          position: "bottom-right"
       });
-    }else{
+      }
+    }catch(e){
       toast.error("エラーが発生しました。", {
         position: "bottom-right"
       });
+    }finally{
+      setExtractLoading(false)
     }
+
   }
 
   const extractKor = async () => {
-    setLoading(true)
-    const res = await window.myAPI.extractKor()
+    setExtractKorLoading(true)
+    
+    try{
+      const res = await window.myAPI.extractKor()
+      await loadData()
 
-    if(res === "success"){
-      toast.success("抽出が完了しました。更新ファイルはデスクトップに保存されました。", {
-        position: "bottom-right"
+      if(res === "success"){
+        toast.success("抽出が完了しました。更新ファイルはデスクトップに保存されました。", {
+          position: "bottom-right"
       });
-    }else{
+      }
+    }catch(e){
       toast.error("エラーが発生しました。", {
         position: "bottom-right"
       });
+    }finally{
+      setExtractKorLoading(false)
     }
   }
   
@@ -82,8 +89,8 @@ const Home = () => {
        {
         context.connected ? (
           <>
-            <button onClick={extract} type='button'>extract</button>
-            <button onClick={extractKor} type='button'>extractKor</button>
+            <button onClick={extract} type='button' disabled={extractLoading || extractKorLoading}>{extractLoading ? "extracting..." : "extract"}</button>
+            <button onClick={extractKor} type='button' disabled={extractLoading || extractKorLoading}>{extractKorLoading ? "extracting..." : "extractKor"}</button>
           </>
 
           // context.data.length > 0 ? (
@@ -129,7 +136,7 @@ const Home = () => {
                   <div id='notConnected'>
                     <p>アプリケーションがDBに接続されていません.</p>
 
-                    <button id='home-button' onClick={connectDB} type='button' disabled={loading}　className={loading ? "disable": ""}>
+                    <button id='home-button' onClick={connectDB} type='button' disabled={loading}>
                       <span id='home-button-txt'>{loading ? "接続試行中..." : "接続する"}</span>
                     </button>
                 </div>
