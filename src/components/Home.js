@@ -48,11 +48,33 @@ const Home = () => {
   // }
 
   const extract = async () => {
-    await window.myAPI.extract()
+    setLoading(true)
+    const res = await window.myAPI.extract()
+
+    if(res === "success"){
+      toast.success("抽出が完了しました。", {
+        position: "bottom-right"
+      });
+    }else{
+      toast.error("エラーが発生しました。", {
+        position: "bottom-right"
+      });
+    }
   }
 
   const extractKor = async () => {
-    await window.myAPI.extractKor()
+    setLoading(true)
+    const res = await window.myAPI.extractKor()
+
+    if(res === "success"){
+      toast.success("抽出が完了しました。", {
+        position: "bottom-right"
+      });
+    }else{
+      toast.error("エラーが発生しました。", {
+        position: "bottom-right"
+      });
+    }
   }
   
   return (
@@ -60,8 +82,8 @@ const Home = () => {
        {
         context.connected ? (
           <>
-            <button onClick={extract}>extract</button>
-            <button onClick={extractKor}>extractKor</button>
+            <button onClick={extract} type='button'>extract</button>
+            <button onClick={extractKor} type='button'>extractKor</button>
           </>
 
           // context.data.length > 0 ? (

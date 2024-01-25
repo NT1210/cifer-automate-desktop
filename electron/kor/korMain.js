@@ -29,7 +29,7 @@ async function mainKor(){
         // output extractedData to template excel file.
         await writeToFile(extractedData, objToBeUpdated, objToBeAdded, objDeleted)
 
-        return "抽出が完了しました。"
+        return "success"
 
     }catch(err){
         console.error(err)
