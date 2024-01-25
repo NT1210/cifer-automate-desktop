@@ -22,7 +22,7 @@ const Home = () => {
     try{
       let res = await window.myAPI.connectDB()
       if(res === "connected") {
-        toast.success("DBに接続しました。更新ファイルはデスクトップに保存されました。", {
+        toast.success("DBに接続しました。", {
           position: "bottom-right"
         });
         context.setConnected(true)
@@ -52,7 +52,7 @@ const Home = () => {
     const res = await window.myAPI.extract()
 
     if(res === "success"){
-      toast.success("抽出が完了しました。", {
+      toast.success("抽出が完了しました。更新ファイルはデスクトップに保存されました。", {
         position: "bottom-right"
       });
     }else{
@@ -67,7 +67,7 @@ const Home = () => {
     const res = await window.myAPI.extractKor()
 
     if(res === "success"){
-      toast.success("抽出が完了しました。", {
+      toast.success("抽出が完了しました。更新ファイルはデスクトップに保存されました。", {
         position: "bottom-right"
       });
     }else{
